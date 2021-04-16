@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonService } from '../services/common-functions.service';
 
 @Component({
   selector: 'app-pagination',
@@ -10,7 +11,11 @@ export class PaginationComponent implements OnInit {
 
   @Input() currentPage;
   @Input() pageTotalNumber;
-  constructor( private _navRoute:Router) { }
+
+  pageNumber:number=1;
+  limit:number = 5;
+  constructor( private _navRoute:Router,
+    private _commonServices:CommonService) { }
 
   ngOnInit(): void {
   }
@@ -19,12 +24,13 @@ export class PaginationComponent implements OnInit {
     return new Array(i);
 }
 
-onClick(pageNumber:number):void{
-  this._navRoute.navigate(['products'],{
-    queryParams:{
-      'page':pageNumber
-    }
-  })
+onClick(num):void{
+  this.pageNumber = num;
+  this._commonServices.onClick(this.pageNumber);
 }
 
+receiveNumber(limitNumber):void{
+  this.limit = limitNumber;
+  console.log('receiveNumber : ' + this.limit);
+}
 }

@@ -1,6 +1,7 @@
 
-<app-search-bar></app-search-bar>
-    <div class="row" *ngIf="products; else homeLoadingTemplate">
+<div *ngIf="products; else homeLoadingTemplate">
+  <app-search-bar></app-search-bar>
+    <div class="row" >
       
 
     <app-product-item
@@ -9,7 +10,11 @@
     ></app-product-item>
 </div>
     
-<app-pagination [currentPage]="currentPage"[pageTotalNumber]="pageTotalNumber"></app-pagination>
+<app-pagination [currentPage]="currentPage"[pageTotalNumber]="pageTotalNumber"
+
+></app-pagination>
+</div>
+
 
 
 

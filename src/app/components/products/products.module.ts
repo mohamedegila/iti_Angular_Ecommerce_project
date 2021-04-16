@@ -8,6 +8,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }
