@@ -15,7 +15,7 @@ export class ProductsService {
   }
 
   getProductsByPage(params?,limit?){
-    return this._http.get(`${environment.baseUrl}/products?page=${params}&limit=${limit}`,);
+    return this._http.get(`${environment.baseUrl}/products?page=${params}&limit=${5}`,);
   }
 
   getProductById(id) {

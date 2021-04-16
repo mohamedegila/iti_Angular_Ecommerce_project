@@ -1,12 +1,20 @@
-<ul class="list-group">
 
+<app-search-bar></app-search-bar>
     <div class="row" *ngIf="products; else homeLoadingTemplate">
+      
+
     <app-product-item
       *ngFor="let singleproduct of products"
       [product]="singleproduct"
     ></app-product-item>
 </div>
-</ul>
+    
+<app-pagination [currentPage]="currentPage"[pageTotalNumber]="pageTotalNumber"></app-pagination>
+
+
+
+
+
 <ng-template #homeLoadingTemplate>
     <div class="d-flex justify-content-center m-5">
         <div class="spinner-grow text-primary" role="status">

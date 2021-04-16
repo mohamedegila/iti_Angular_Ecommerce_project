@@ -19,23 +19,24 @@ export class ProductListComponent implements OnInit {
 
   constructor(
       private _route: ActivatedRoute,
-      private _coursesService: ProductsService,
-      private _navRoute:Router) { }
+      private _productsService: ProductsService,
+     ) { }
 
   ngOnInit(): void {
     this._routParamSub = this._route.queryParamMap.subscribe(queryParamMap => {
     if(queryParamMap.has('page')){
             console.log(queryParamMap.get('page'));
-            this._coursesService.getProductsByPage(queryParamMap.get('page'),queryParamMap.get('limit')).subscribe((res:any)=>{
+            this._productsService.getProductsByPage(queryParamMap.get('page')).subscribe((res:any)=>{
               this.products = res.data;
               this.pageTotalNumber = res.total_pages;
               this.currentPage = Number(queryParamMap.get('page')) || 1;
               console.log("currentPage " + this.currentPage);
             })
           }else{
-            this._coursesService.getProducts(12).subscribe((res: any) => {
+            this._productsService.getProducts(12).subscribe((res: any) => {
               this.products = res.data;
               this.pageTotalNumber = res.total_pages;
+              this.currentPage = Number(queryParamMap.get('page')) || 1;
               console.log("here");
             });
           }
@@ -46,16 +47,6 @@ export class ProductListComponent implements OnInit {
       ngOnDestroy(): void {
         this._routParamSub.unsubscribe();
       }
-      counter(i: number) {
-        return new Array(i);
-    }
-    
-    onClick(pageNumber:number):void{
-      this._navRoute.navigate(['courses'],{
-        queryParams:{
-          'page':pageNumber
-        }
-      })
-    }
+     
 
 }
