@@ -1,1 +1,19 @@
-<p>product-list works!</p>
+<ul class="list-group">
+
+    <div class="row" *ngIf="products; else homeLoadingTemplate">
+    <app-product-item
+      *ngFor="let singleproduct of products"
+      [product]="singleproduct"
+    ></app-product-item>
+</div>
+</ul>
+<ng-template #homeLoadingTemplate>
+    <div class="d-flex justify-content-center m-5">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+  </ng-template>
