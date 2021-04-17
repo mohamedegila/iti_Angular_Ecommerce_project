@@ -1,23 +1,30 @@
 import { CommonService } from '../services/common-functions.service';
 
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit,OnChanges {
 
   limit:number=5;
   currentPage:number=1;
+
+  @Input() searchWord;
   @Output() limitNumberEvent = new EventEmitter<number>();
   constructor(private _commonServices:CommonService) { }
 
   ngOnInit(): void {
+    
+  }
+  ngOnChanges(): void{
+    console.log("searchWord" + this.searchWord);
   }
 
   onClick(num):void{
+  
     this.limit = num.target.value || 5;
     this._commonServices.onClick(this.currentPage,this.limit);
   }

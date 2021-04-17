@@ -15,7 +15,13 @@ export class ProductsService {
   }
 
   getProductsByPage(params?,limit?,q?){
-    return this._http.get(`${environment.baseUrl}/products?page=${params}&limit=${limit}&q=${q}`);
+    console.log("q : " + q);
+    if(q != '' && q != null){
+      return this._http.get(`${environment.baseUrl}/products?page=${params}&limit=${limit}&q=${q}`);
+    }else{
+      return this._http.get(`${environment.baseUrl}/products?page=${params}&limit=${limit}`);
+    }
+    
   }
 
   getProductById(id) {

@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   pageTotalNumber:number;
   currentPage:number;
+  searchWord:string;
   private _routParamSub:Subscription;
 
   constructor(
@@ -32,7 +33,8 @@ export class ProductListComponent implements OnInit {
               this.products = res.data;
               this.pageTotalNumber = res.total_pages;
               this.currentPage = Number(queryParamMap.get('page')) || 1;
-              console.log("currentPage " + this.currentPage);
+              this.searchWord = queryParamMap.get('q');
+              console.log("getProductsByPage " + queryParamMap.get('q'));
             })
           }else{
             this._productsService.getProducts(12).subscribe((res: any) => {
@@ -40,6 +42,7 @@ export class ProductListComponent implements OnInit {
               this.pageTotalNumber = res.total_pages;
               this.currentPage = Number(queryParamMap.get('page')) || 1;
               this._commonServices.clearStrimg();
+              this.searchWord = 'Product Title'
               console.log("here");
             });
           }

@@ -9,8 +9,8 @@ export class CommonService {
 
 
     pageNumber:number=1;
-    limit:number ;
-    quary:string;
+    limit:number=5 ;
+    quary:string='';
   constructor(private _navRoute:Router) { }
 
   onClick(pageNumber:number,limit?:number,stringFilter?:string):void{
@@ -18,8 +18,9 @@ export class CommonService {
     this.limit      = limit || this.limit;
     this.quary      = stringFilter|| this.quary ;
     
-    console.log(this.quary);
-    if(this.quary != undefined){
+    console.log("quary : "+this.quary);
+    if(this.quary != ''){
+      console.log("qwqwqq");
       this._navRoute.navigate(['products'],{
       
         queryParams:{
